@@ -4,7 +4,7 @@ var router = express.Router();
 const fetch = require("node-fetch");
 
 const NEWS_API_KEY = process.env.NEWS_API_KEY;
-const imgUrl = "./empty_urltoimg.jpg";
+const imgUrl = "/empty_urltoimg.jpg";
 
 router.get("/articles", (req, res) => {
   fetch(
