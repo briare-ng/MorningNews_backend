@@ -4,6 +4,7 @@ var router = express.Router();
 const fetch = require("node-fetch");
 
 const NEWS_API_KEY = process.env.NEWS_API_KEY;
+const imgUrl = "./empty_urltoimg.jpg";
 
 router.get("/articles", (req, res) => {
   fetch(
@@ -11,6 +12,12 @@ router.get("/articles", (req, res) => {
   )
     .then((response) => response.json())
     .then((data) => {
+      data.articles.map((data) => {
+        if (data.urlToImage == "" || data.urlToImage == null) {
+          data.urlToImage = imgUrl;
+        }
+      });
+
       if (data.status === "ok") {
         res.json({ articles: data.articles });
       } else {
